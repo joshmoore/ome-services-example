@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="ServicesExample" default="tools-dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<!--
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# Copyright 2012 Glencoe Software, Inc. All rights reserved.
+# Use is subject to license terms supplied in LICENSE.txt
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Written by:  Josh Moore, josh at glencoesoftware.com
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-->
+    <description>
+        Template directory which can be cloned to components/tools for
+        adding services to OMERO. This build file will unpack all the compiled
+        files and add them to dist/lib/server/services.jar
+    </description>
+
+    <property name="main.class" value="NONE"/>
+
+    <dirname property="up-two" file="${basedir}"/>
+    <dirname property="up-one" file="${up-two}"/>
+    <property name="import.dir"       value="${up-one}/antlib/resources"/>
+
+    <import file="${import.dir}/global.xml"/>
+    <import file="${import.dir}/lifecycle.xml"/>
+    <import file="../common.xml"/>
+
+    <target name="tools-init"/>
+
+    <target name="tools-build" depends="tools-init,install" description="Creates all artifacts for tools/target"/>
+
+    <target name="tools-dist" depends="tools-build" description="Copied artifacts to tools/target" unless="skip.compile">
+        <unjar src="${target.dir}/${ivy.module}.jar" dest="${tools.classes}"/>
+    </target>
+
+    <target name="tools-clean" depends="clean"/>
+
+</project>

@@ -1,0 +1,17 @@
+<ivy-module version="1.0">
+  <info
+      organisation="omero"
+      module="ServicesExample"
+      status="integration"/>
+  <configurations>
+    <conf name="build"/>
+    <conf name="client"/>
+  </configurations>
+  <publications>
+    <artifact name="ServicesExample" type="jar"/>
+  </publications>
+  <dependencies defaultconfmapping="build,client->default">
+    <!-- Internal -->
+    <dependency org="omero" name="blitz" rev="${omero.version}" changing="true" conf="build->build"/>
+  </dependencies>
+</ivy-module>

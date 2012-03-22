@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+
+<suite name="ServicesExample.unit" >
+
+  <test name="ServicesExample.unit.active">
+    <groups>
+      <run>
+        <exclude name="broken"/>
+        <exclude name="ignore"/>
+        <exclude name="manual"/>
+        <exclude name="integration"/>
+      </run>
+    </groups>
+    <packages>
+      <package name="ome.services.example.*"/>
+    </packages>
+  </test>
+
+</suite>
